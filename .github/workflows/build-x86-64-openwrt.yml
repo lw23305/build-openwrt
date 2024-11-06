@@ -3,7 +3,7 @@ name: build x86/64 openwrt
 on:
   workflow_dispatch:
   schedule:
-    - cron: 30 8 */9 * *
+    - cron: 0 14 * * *
   watch:
     types: started
 
@@ -186,12 +186,12 @@ jobs:
         rm -rf packages feeds.buildinfo version.buildinfo profiles.json
         rm -rf build.config
         rm -rf openwrt-x86-64-generic-rootfs.tar.gz
-        rm -rf openwrt-x86-64-generic-squashfs-combined.img.gz
-        rm -rf openwrt-x86-64-generic.manifest
-        rm -rf packages.tar.gz
-        rm -rf Source code(zip)
-        rm -rf Source code(tar.gz)
-	echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
+		rm -rf openwrt-x86-64-generic-squashfs-combined.img.gz
+		rm -rf openwrt-x86-64-generic.manifest
+		rm -rf packages.tar.gz
+		rm -rf Source code(zip)
+		rm -rf Source code(tar.gz)
+		echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
 
     - name: Upload Firmware To Artifact
@@ -207,12 +207,11 @@ jobs:
       with:
         name: ${{ env.DATE }} for ${{ env.RELEASE_TAG }}
         allowUpdates: true
+        removeArtifacts: true
         tag: ${{ env.RELEASE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.RELEASE_TAG }}**
           ### 📒 固件信息
-          - 🚀 内核版本: ${{ env.KERNEL }}
-
-
+           - 🚀 内核版本: ${{ env.KERNEL }}
