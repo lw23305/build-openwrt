@@ -10,17 +10,17 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/luci2/bin/config_generat
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # 移除要替换的包+
-rm -rf feeds/packages/utils/v2dat
-rm -rf feeds/packages/lang/golang
+# rm -rf feeds/packages/utils/v2dat
+# rm -rf feeds/packages/lang/golang
 # rm -rf feeds/packages/net/alist
-rm -rf feeds/packages/net/mosdns
+# rm -rf feeds/packages/net/mosdns
 # rm -rf feeds/packages/net/smartdns
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-passwall
 # rm -rf feeds/luci/applications/luci-app-passwall2
 # rm -rf feeds/luci/applications/luci-app-openclash
 # rm -rf feeds/luci/applications/luci-app-smartdns
-rm -rf feeds/luci/applications/luci-app-mosdns
+# rm -rf feeds/luci/applications/luci-app-mosdns
 # rm -rf feeds/luci/applications/luci-app-alist
 # # rm -rf feeds/luci/applications/luci-app-netdata
 
