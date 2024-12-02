@@ -48,11 +48,6 @@ on:
         default: true
         type: boolean
 
-      openclash:
-        description: "预设openclash内核"
-        required: false
-        default: "amd64"
-
       artifact:
         description: "上传固件到Artifact"
         required: false
