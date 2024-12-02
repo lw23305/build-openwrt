@@ -1,6 +1,6 @@
 name: build x86/64 openwrt
 
-于:
+on:
 #  schedule: [cron: 30 14 */3 * *]
 #  watch:
 #    types: started
@@ -9,26 +9,26 @@ name: build x86/64 openwrt
       source:
         description: "选择要编译的LUCI版本"
         required: true
-        默认: "18.06"
+        default: "18.06"
         type: choice
-        options: [18.06， 23.05]
+        options: [18.06, 23.05]
 
       target:
         description: "选择要编译的机型"
         required: true
-        默认: "x86-64"
+        default: "x86-64"
         type: choice
         options: [x86-64]
 
       ip:
         description: "设置默认登录IP"
         required: false
-        默认: "192.168.2.1"
+        default: "192.168.2.1"
 
       partsize:
         description: "设置rootfs大小"
         required: false
-        默认: "800"
+        default: "800"
 
 #      free_disk:
 #        description: '清理释放磁盘空间'
@@ -39,30 +39,30 @@ name: build x86/64 openwrt
       toolchain:
         description: "使用toolchain缓存"
         required: false
-        默认: true
+        default: true
         type: boolean
 
       zsh_tool:
         description: "预设zsh终端工具"
         required: false
-        默认: true
+        default: true
         type: boolean
 
       openclash:
         description: "预设openclash内核"
         required: false
-        默认: "amd64"
+        default: "amd64"
 
       artifact:
         description: "上传固件到Artifact"
         required: false
-        默认: true
+        default: true
         type: boolean
 
       release:
         description: "上传固件到Releases"
         required: false
-        默认: true
+        default: true
         type: boolean
 
 jobs:
