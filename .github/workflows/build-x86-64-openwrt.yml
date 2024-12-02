@@ -224,6 +224,10 @@ jobs:
         tar -zcf packages.tar.gz packages
         sleep 3s && rm -rf packages sha256sums *.buildinfo *.bin *.json *rootfs.img.gz
         sed '/^$/d' $OPENWRT_PATH/.config >config.txt
+        rm -rf immortalwrt-x86-64-generic-rootfs.tar.gz
+        rm -rf immortalwrt-x86-64-generic-squashfs-combined.img.gz
+        rm -rf immortalwrt-x86-64-generic.manifest
+        rm -rf packages.tar.gz
         echo "FIRMWARE_PATH=$PWD" >>$GITHUB_ENV
 
     - name: Upload Firmware To Artifact
