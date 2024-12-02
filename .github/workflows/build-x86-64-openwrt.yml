@@ -1,6 +1,6 @@
 name: build x86/64 openwrt
 
-on:
+于:
 #  schedule: [cron: 30 14 */3 * *]
 #  watch:
 #    types: started
@@ -9,26 +9,26 @@ on:
       source:
         description: "选择要编译的LUCI版本"
         required: true
-        default: "18.06"
+        默认: "23.05"
         type: choice
-        options: [18.06, 23.05]
+        options: [18.06， 23.05]
 
       target:
         description: "选择要编译的机型"
         required: true
-        default: "x86-64"
+        默认: "x86-64"
         type: choice
         options: [x86-64]
 
       ip:
         description: "设置默认登录IP"
         required: false
-        default: "192.168.2.1"
+        默认: "192.168.2.1"
 
       partsize:
         description: "设置rootfs大小"
         required: false
-        default: "800"
+        默认: "800"
 
 #      free_disk:
 #        description: '清理释放磁盘空间'
@@ -39,25 +39,25 @@ on:
       toolchain:
         description: "使用toolchain缓存"
         required: false
-        default: true
+        默认: true
         type: boolean
 
       zsh_tool:
         description: "预设zsh终端工具"
         required: false
-        default: true
+        默认: true
         type: boolean
 
       artifact:
         description: "上传固件到Artifact"
         required: false
-        default: true
+        默认: true
         type: boolean
 
       release:
         description: "上传固件到Releases"
         required: false
-        default: true
+        默认: true
         type: boolean
 
 jobs:
@@ -177,7 +177,7 @@ jobs:
         name: toolchain-cache
         tag_name: ${{ env.TOOLCHAIN_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        files: output/*
+        文件: output/*
         body: OpenWrt 工具链缓存
 
     - name: Download DL Package
