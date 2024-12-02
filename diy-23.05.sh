@@ -17,7 +17,7 @@ if [[ $REBUILD_TOOLCHAIN = 'true' ]]; then
 fi
 
 color() {
-    case $1 in
+    case $1 在
         cy) echo -e "\033[1;33m$2\033[0m" ;;
         cr) echo -e "\033[1;31m$2\033[0m" ;;
         cg) echo -e "\033[1;32m$2\033[0m" ;;
@@ -95,7 +95,7 @@ clone_dir() {
         echo -e "$(color cr 拉取) $repo_url [ $(color cr ✕) ]" | _printf
         return 0
     }
-    for target_dir in "$@"; do
+    for target_dir 在 "$@"; do
         local source_dir current_dir
         source_dir=$(_find "$temp_dir" "$target_dir")
         [[ -d "$source_dir" ]] || \
@@ -132,7 +132,7 @@ clone_all() {
         echo -e "$(color cr 拉取) $repo_url [ $(color cr ✕) ]" | _printf
         return 0
     }
-    for target_dir in $(ls -l $temp_dir/$@ | awk '/^d/{print $NF}'); do
+    for target_dir 在 $(ls -l $temp_dir/$@ | awk '/^d/{print $NF}'); do
         local source_dir current_dir
         source_dir=$(_find "$temp_dir" "$target_dir")
         current_dir=$(_find "package/ feeds/ target/" "$target_dir")
@@ -232,37 +232,37 @@ destination_dir="package/A"
 color cy "添加&替换插件"
 
 # 添加额外插件
-clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
-git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
-clone_all https://github.com/morytyann/OpenWrt-mihomo
+# clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
+# git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
+# clone_all https://github.com/morytyann/OpenWrt-mihomo
 
-clone_all https://github.com/sbwml/luci-app-alist
-clone_all https://github.com/sbwml/luci-app-mosdns
-git_clone https://github.com/sbwml/packages_lang_golang golang
+# clone_all https://github.com/sbwml/luci-app-alist
+# clone_all https://github.com/sbwml/luci-app-mosdns
+# git_clone https://github.com/sbwml/packages_lang_golang golang
 
-clone_all https://github.com/linkease/istore-ui
-clone_all https://github.com/linkease/istore luci
+# clone_all https://github.com/linkease/istore-ui
+# clone_all https://github.com/linkease/istore luci
 
-clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
+# clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
 clone_all https://github.com/brvphoenix/wrtbwmon
 
 # 科学上网插件
 clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/xiaorouji/openwrt-passwall-packages
 clone_all https://github.com/xiaorouji/openwrt-passwall
-clone_all https://github.com/xiaorouji/openwrt-passwall2
-clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
+# clone_all https://github.com/xiaorouji/openwrt-passwall2
+# clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 
 # Themes
-git_clone https://github.com/kiddin9/luci-theme-edge
+# git_clone https://github.com/kiddin9/luci-theme-edge
 git_clone https://github.com/jerrykuku/luci-theme-argon
 git_clone https://github.com/jerrykuku/luci-app-argon-config
 
 # 晶晨宝盒
-clone_all https://github.com/ophub/luci-app-amlogic
-sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
+# clone_all https://github.com/ophub/luci-app-amlogic
+# sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
 # sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
-sed -i "s|ARMv8|$RELEASE_TAG|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
+# sed -i "s|ARMv8|$RELEASE_TAG|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
 
 # 开始加载个人设置
 BEGIN_TIME=$(date '+%H:%M:%S')
@@ -310,7 +310,7 @@ find $destination_dir/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i \
     -e 's?include \.\./\.\./\(lang\|devel\)?include $(TOPDIR)/feeds/packages/\1?' {}
 
 # 转换插件语言翻译
-for e in $(ls -d $destination_dir/luci-*/po feeds/luci/applications/luci-*/po); do
+for e 在 $(ls -d $destination_dir/luci-*/po feeds/luci/applications/luci-*/po); do
     if [[ -d $e/zh-cn && ! -d $e/zh_Hans ]]; then
         ln -s zh-cn $e/zh_Hans 2>/dev/null
     elif [[ -d $e/zh_Hans && ! -d $e/zh-cn ]]; then
