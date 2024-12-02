@@ -254,15 +254,9 @@ clone_all https://github.com/xiaorouji/openwrt-passwall
 # clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 
 # Themes
-# git_clone https://github.com/kiddin9/luci-theme-edge
 git_clone https://github.com/jerrykuku/luci-theme-argon
 git_clone https://github.com/jerrykuku/luci-app-argon-config
 
-# 晶晨宝盒
-# clone_all https://github.com/ophub/luci-app-amlogic
-# sed -i "s|firmware_repo.*|firmware_repo 'https://github.com/$GITHUB_REPOSITORY'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
-# sed -i "s|kernel_path.*|kernel_path 'https://github.com/ophub/kernel'|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
-# sed -i "s|ARMv8|$RELEASE_TAG|g" $destination_dir/luci-app-amlogic/root/etc/config/amlogic
 
 # 开始加载个人设置
 BEGIN_TIME=$(date '+%H:%M:%S')
@@ -277,9 +271,6 @@ fi
 
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
-
-# 更改默认 Shell 为 zsh
-# sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # TTYD 免登录
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
@@ -300,10 +291,6 @@ sed -i 's/system/status/g' feeds/luci/applications/luci-app-netdata/luasrc/contr
 sed -i '3a \		"order": 10,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 sed -i 's/\"终端\"/\"TTYD 终端\"/g' feeds/luci/applications/luci-app-ttyd/po/zh_Hans/ttyd.po
 
-# 设置 nlbwmon 独立菜单
-sed -i 's/services\/nlbw/nlbw/g; /path/s/admin\///g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
-sed -i 's/services\///g' feeds/luci/applications/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
-
 # 修复 Makefile 路径
 find $destination_dir/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i \
     -e 's?\.\./\.\./luci.mk?$(TOPDIR)/feeds/luci/luci.mk?' \
@@ -319,28 +306,12 @@ for e 在 $(ls -d $destination_dir/luci-*/po feeds/luci/applications/luci-*/po);
 done
 status 加载个人设置
 
-# 开始下载openchash运行内核
-[ $CLASH_KERNEL ] && {
-    BEGIN_TIME=$(date '+%H:%M:%S')
-    chmod +x $GITHUB_WORKSPACE/scripts/preset-clash-core.sh
-    $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
-    status 下载openchash运行内核
-}
-
 # 开始下载zsh终端工具
 [ $ZSH_TOOL = 'true' ] && {
     BEGIN_TIME=$(date '+%H:%M:%S')
     chmod +x $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
     $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
     status 下载zsh终端工具
-}
-
-# 开始下载adguardhome运行内核
-[ $CLASH_KERNEL ] && {
-    BEGIN_TIME=$(date '+%H:%M:%S')
-    chmod +x $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh
-    $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
-    status 下载adguardhome运行内核
 }
 
 # 开始更新配置文件
