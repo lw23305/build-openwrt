@@ -9,7 +9,7 @@ on:
       source:
         description: '选择要编译的LUCI版本'
         required: true
-        default: '18.06'
+        default: '23.05'
         type: choice
         options: [18.06, 23.05]
 
@@ -23,7 +23,7 @@ on:
       ip:
         description: '设置默认登录IP'
         required: false
-        default: '192.168.1.2'
+        default: '192.168.2.1'
 
       partsize:
         description: '设置rootfs大小'
@@ -48,10 +48,10 @@ on:
         default: true
         type: boolean
 
-      openclash:
-        description: '预设openclash内核'
-        required: false
-        default: 'amd64'
+#      openclash:
+#        description: '预设openclash内核'
+#       required: false
+#        default: 'amd64'
 
       artifact:
         description: '上传固件到Artifact'
@@ -249,11 +249,3 @@ jobs:
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本: ${{ env.KERNEL_VERSION }}
-          - 🌐 默认地址: ${{ env.DEFAULT_IP }}
-          - 🔑 默认密码: password
-          ### 🧊 固件版本
-          - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
-          - ${{ env.COMMIT_AUTHOR }}
-          - ${{ env.COMMIT_DATE }}
-          - ${{ env.COMMIT_MESSAGE }}
-          - ${{ env.COMMIT_HASH }}
