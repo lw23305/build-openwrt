@@ -236,7 +236,7 @@ color cy "添加&替换插件"
 
 # 添加额外插件
 # clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
-# git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
+git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
 # clone_all https://github.com/morytyann/OpenWrt-mihomo
 
 # clone_all https://github.com/sbwml/luci-app-alist
