@@ -278,6 +278,10 @@ if [ $PART_SIZE ]; then
     echo "CONFIG_TARGET_ROOTFS_PARTSIZE=$PART_SIZE" >>$GITHUB_WORKSPACE/$CONFIG_FILE
 fi
 
+# 修改主机名字，修改你喜欢的就行（不能纯数字或者使用中文）
+sed -i "/uci commit system/i\uci set system.@system[0].hostname='Lihe'" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/hostname='.*'/hostname='Lihe'/g" ./package/base-files/files/bin/config_generate
+
 # 修改默认IP
 [ $DEFAULT_IP ] && sed -i '/n) ipad/s/".*"/"'"$DEFAULT_IP"'"/' package/base-files/files/bin/config_generate
 
