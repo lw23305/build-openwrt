@@ -250,7 +250,7 @@ git_clone https://github.com/sbwml/packages_lang_golang golang
 # clone_all https://github.com/brvphoenix/wrtbwmon
 
 # 科学上网插件
-clone_all https://github.com/fw876/helloworld
+# clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/xiaorouji/openwrt-passwall-packages
 clone_all https://github.com/xiaorouji/openwrt-passwall
 # clone_all https://github.com/xiaorouji/openwrt-passwall2
