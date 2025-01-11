@@ -239,8 +239,8 @@ color cy "添加&替换插件"
 git_clone https://github.com/immortalwrt/homeproxy luci-app-homeproxy
 # clone_all https://github.com/morytyann/OpenWrt-mihomo
 
-# clone_all https://github.com/sbwml/luci-app-alist
-# clone_all https://github.com/sbwml/luci-app-mosdns
+clone_all https://github.com/sbwml/luci-app-alist
+clone_all https://github.com/sbwml/luci-app-mosdns
 git_clone https://github.com/sbwml/packages_lang_golang golang
 
 # clone_all https://github.com/linkease/istore-ui
