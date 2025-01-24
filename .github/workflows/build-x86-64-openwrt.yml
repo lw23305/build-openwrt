@@ -226,6 +226,7 @@ jobs:
         rm -rf immortalwrt-x86-64-generic-squashfs-combined.img.gz
         rm -rf immortalwrt-x86-64-generic.manifest
         rm -rf packages.tar.gz
+        rm -rf config.txt
         sed '/^$/d' $OPENWRT_PATH/.config >config.txt
         echo "FIRMWARE_PATH=$PWD" >>$GITHUB_ENV
 
