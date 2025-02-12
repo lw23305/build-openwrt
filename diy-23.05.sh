@@ -221,10 +221,6 @@ else
     echo "REBUILD_TOOLCHAIN=true" >>$GITHUB_ENV
 fi
 
-# 强制切换内核版本5.10/5.15/5.4/6.1
-sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.1/g" target/linux/x86/Makefile
-sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.1/g" target/linux/x86/Makefile
-
 # 开始更新&安装插件
 begin_time=$(date '+%H:%M:%S')
 ./scripts/feeds update -a 1>/dev/null 2>&1
