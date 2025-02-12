@@ -179,10 +179,9 @@ SUBTARGET_NAME=$(awk -F '"' '/CONFIG_TARGET_SUBTARGET/{print $2}' .config)
 DEVICE_TARGET=$TARGET_NAME-$SUBTARGET_NAME
 echo "DEVICE_TARGET=$DEVICE_TARGET" >>$GITHUB_ENV
 
-# 内核版本
-# KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
-# KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
-# echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
+KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
+KERNEL_VERSION=$(awk -F '-' '/KERNEL/{print $2}' include/kernel-$KERNEL | awk '{print $1}')
+echo "KERNEL_VERSION=$KERNEL_VERSION" >>$GITHUB_ENV
 
 # Toolchain缓存文件名
 TOOLS_HASH=$(git log --pretty=tformat:"%h" -n1 tools toolchain)
@@ -221,6 +220,10 @@ if [[ $TOOLCHAIN = 'true' ]]; then
 else
     echo "REBUILD_TOOLCHAIN=true" >>$GITHUB_ENV
 fi
+
+# 强制切换内核版本5.10/5.15/5.4/6.1
+sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.1/g" target/linux/x86/Makefile
+sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.1/g" target/linux/x86/Makefile
 
 # 开始更新&安装插件
 begin_time=$(date '+%H:%M:%S')
